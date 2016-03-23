@@ -15,25 +15,24 @@ homeCtr.controller('HomeController', ['$scope', 'restService', function($scope, 
 	}
 
 	$scope.init = function(){
-		console.log('Home controller init');
+		restService.get({resource:'profile'}, function(response){
+
+		});
 	}
 
 	$scope.registerProfile = function(){
-		console.log(JSON.stringify($scope.newUser));
 		restService.post({resource:'profile'}, $scope.newUser, function(response){ 
-		
-		//resource:'profile' tells restService.js what the wildcard :resource is. resource has to match what the wildcard :resource in restService.js is - this is agnostic to the api.js since that's in the backend.
-		
-		//this functions fires when user clicks, $scope.newUser gets passed to api.js and is literally the req.body
-		
-			console.log(JSON.stringify(response));
+			window.location.href ='/account';
 		});
 	}
 
 	$scope.login = function(){
-		console.log(JSON.stringify($scope.returningUser));
 		restService.post({resource:'login'}, $scope.returningUser, function(response){
-			console.log(JSON.stringify(response));
+			if(response.confirmation != 'success'){
+				alert(response.message);
+				return;
+			}
+			window.location.href ='/account';
 		});
 	}
 

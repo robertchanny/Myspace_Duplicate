@@ -1,11 +1,10 @@
 var modules = [
 	'HomeModule',
-	'RestServiceModule'
+	'RestServiceModule',
+	'AccountModule'
 ];
 
 var app = angular.module('Myspace', modules, function($interpolateProvider){
 	$interpolateProvider.startSymbol('<%');
 	$interpolateProvider.endSymbol('%>');
-})
-
-//Log in and with the log in person in bold
+});
